@@ -1,6 +1,6 @@
 #include <stdio.h>
 int main(void)
 {
-	printf("hellodayeon \n");
+	printf("sumi \n");
 	return 0;
 }
