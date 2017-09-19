@@ -46,10 +46,10 @@ int main(int argc, char**argv)
 	raspicam::RaspiCam_Cv Camera;
 	Mat image;
 	
-	if(wiringPiSetupGpio() == -1) return 1;
-	pinMode(motor, OUTPUT);
-	digitalWrite(motor, LOW);
-	softPwmCreate(motor, 0, 100);
+	//if(wiringPiSetupGpio() == -1) return 1;
+	//pinMode(motor, OUTPUT);
+	//digitalWrite(motor, LOW);
+	//softPwmCreate(motor, 0, 100);
 
 	Camera.set( CV_CAP_PROP_FORMAT, CV_8UC3);
 	Camera.set( CV_CAP_PROP_FRAME_WIDTH, 640);
@@ -86,9 +86,9 @@ int main(int argc, char**argv)
 			printf("tl=%d\n", faces[i].tl().x);
 			if(faces.size() > 0)
 			{
-				for(i=0; i<20; i++){
-					softPwmWrite(motor, i );	
-				}
+				//for(i=0; i<20; i++){
+				//	softPwmWrite(motor, i );	
+				//}
 				
 
 				
@@ -102,12 +102,8 @@ int main(int argc, char**argv)
 				{
 					//rectangle(image, eyes[j], Scalar(0,255,0), 2);
 					Point center( faces[i].x + eyes[j].x + eyes[j].width*0.5, faces[i].y + eyes[j].y + eyes[j].height*0.5);
-					int radius = cvRound( (eyes[j].width + eyes[j].height)*0.25);
+					int radius = cvRound( (eyes[j].width + eyes[j].height)*0.05);
 					circle( image, center, radius, Scalar(0, 255, 0), 4, 8, 0);
-				}
-			}else {
-				for(i=0; i<20; i++){
-					softPwmWrite(motor, 20 - i );	
 				}
 			}
 		}
